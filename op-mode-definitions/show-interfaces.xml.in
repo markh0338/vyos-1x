@@ -8,24 +8,54 @@
         </properties>
         <command>${vyos_op_scripts_dir}/interfaces.py show_summary_extended</command>
         <children>
-          <leafNode name="counters">
+          <node name="counters">
             <properties>
               <help>Show network interface counters</help>
             </properties>
+            <children>
+              <leafNode name="json">
+                <properties>
+                  <help>Show detailed information of all interfaces</help>
+                </properties>
+                <command>${vyos_op_scripts_dir}/interfaces.py show_counters --raw</command>
+              </leafNode>
+            </children>
             <command>${vyos_op_scripts_dir}/interfaces.py show_counters</command>
-          </leafNode>
-          <leafNode name="detail">
+          </node>
+          <node name="detail">
             <properties>
               <help>Show detailed information of all interfaces</help>
             </properties>
+            <children>
+              <leafNode name="json">
+                <properties>
+                  <help>Show detailed information of all interfaces</help>
+                </properties>
+                <command>${vyos_op_scripts_dir}/interfaces.py show --raw</command>
+              </leafNode>
+            </children>
             <command>${vyos_op_scripts_dir}/interfaces.py show</command>
+          </node>
+          <leafNode name="json">
+            <properties>
+              <help>Show detailed information of all interfaces</help>
+            </properties>
+            <command>${vyos_op_scripts_dir}/interfaces.py show_summary_extended --raw</command>
           </leafNode>
-          <leafNode name="summary">
+          <node name="summary">
             <properties>
               <help>Show summary information of all interfaces</help>
             </properties>
+            <children>
+              <leafNode name="json">
+                <properties>
+                  <help>Show JSON structured information of all interfaces</help>
+                </properties>
+                <command>${vyos_op_scripts_dir}/interfaces.py show --raw</command>
+              </leafNode>
+            </children>
             <command>${vyos_op_scripts_dir}/interfaces.py show_summary</command>
-          </leafNode>
+          </node>
           <tagNode name="kernel">
             <properties>
               <completionHelp>

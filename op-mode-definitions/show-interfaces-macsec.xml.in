@@ -13,13 +13,27 @@
             </properties>
             <command>ip macsec show</command>
             <children>
-              <leafNode name="detail">
+              <node name="detail">
                 <properties>
                   <help>Show detailed MACsec interface information</help>
                 </properties>
                 <command>ip -s macsec show</command>
+                <children>
+                  <leafNode name="json">
+                    <properties>
+                      <help>Show JSON structured detailed information of all MACsec interfaces</help>
+                    </properties>
+                    <command>ip -s --json macsec show</command>
+                  </leafNode>
+                </children>
+              </node>
+              <leafNode name="json">
+                <properties>
+                  <help>Show JSON structured information of all MACsec interfaces</help>
+                </properties>
+                <command>ip --json macsec show</command>
               </leafNode>
-            </children>      
+            </children>
           </node>
           <tagNode name="macsec">
             <properties>
@@ -30,6 +44,12 @@
             </properties>
             <command>ip macsec show $4</command>
             <children>
+              <leafNode name="json">
+                <properties>
+                  <help>Show JSON structured information of specified MACsec interface</help>
+                </properties>
+                <command>ip --json macsec show $4</command>
+              </leafNode>
               #include <include/show-interface-type-event-log.xml.i>
             </children>
           </tagNode>

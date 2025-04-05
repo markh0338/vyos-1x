@@ -38,6 +38,12 @@
                 </properties>
                 <command>sudo ${vyos_op_scripts_dir}/show_wwan.py --interface=$4 --imsi</command>
               </leafNode>
+              <leafNode name="json">
+                <properties>
+                  <help>Show JSON structured summary of the specified Wireless Wire Area Network (WWAN) interface</help>
+                </properties>
+                <command>${vyos_op_scripts_dir}/interfaces.py show --intf-name="$4" --intf-type=wirelessmodem --raw</command>
+              </leafNode>
               <leafNode name="model">
                 <properties>
                   <help>Show WWAN module manufacturer</help>
@@ -89,11 +95,25 @@
             </properties>
             <command>${vyos_op_scripts_dir}/interfaces.py show_summary --intf-type=wwan</command>
             <children>
-              <leafNode name="detail">
+              <node name="detail">
                 <properties>
-                  <help>Show detailed Wireless Modem (WWAN( interface information</help>
+                  <help>Show detailed Wireless Modem (WWAN) interface information</help>
                 </properties>
                 <command>${vyos_op_scripts_dir}/interfaces.py show --intf-type=wwan</command>
+                <children>
+                  <leafNode name="json">
+                    <properties>
+                      <help>Show JSON structured detailed information of all Wireless Modem (WWAN) interfaces</help>
+                    </properties>
+                    <command>${vyos_op_scripts_dir}/interfaces.py show --intf-type=wwan --raw</command>
+                  </leafNode>
+                </children>
+              </node>
+              <leafNode name="json">
+                <properties>
+                  <help>Show JSON structured summary of the specified Wireless Wire Area Network (WWAN) interface</help>
+                </properties>
+                <command>${vyos_op_scripts_dir}/interfaces.py show_summary --intf-type=wwan --raw</command>
               </leafNode>
             </children>
           </node>

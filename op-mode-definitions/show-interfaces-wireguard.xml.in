@@ -11,7 +11,7 @@
                 <script>${vyos_completion_dir}/list_interfaces --type wireguard</script>
               </completionHelp>
             </properties>
-	        <command>${vyos_op_scripts_dir}/interfaces.py show --intf-name="$4" --intf-type=wireguard</command>
+            <command>${vyos_op_scripts_dir}/interfaces.py show --intf-name="$4" --intf-type=wireguard</command>
             <children>
               <leafNode name="allowed-ips">
                 <properties>
@@ -52,11 +52,25 @@
             </properties>
             <command>${vyos_op_scripts_dir}/interfaces.py show_summary --intf-type=wireguard</command>
             <children>
-              <leafNode name="detail">
+              <node name="detail">
                 <properties>
                   <help>Show detailed Wireguard interface information</help>
                 </properties>
                 <command>${vyos_op_scripts_dir}/interfaces.py show --intf-type=wireguard</command>
+                <children>
+                  <leafNode name="json">
+                    <properties>
+                      <help>Show JSON structured detailed information of all WireGuard interfaces</help>
+                    </properties>
+                    <command>${vyos_op_scripts_dir}/interfaces.py show --intf-type=wireguard --raw</command>
+                  </leafNode>
+                </children>
+              </node>
+              <leafNode name="json">
+                <properties>
+                  <help>Show JSON structured summary of all VXLAN interfaces</help>
+                </properties>
+                <command>${vyos_op_scripts_dir}/interfaces.py show_summary --intf-type=wireguard --raw</command>
               </leafNode>
             </children>
           </node>

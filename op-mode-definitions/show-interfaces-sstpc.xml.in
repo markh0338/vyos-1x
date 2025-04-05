@@ -19,6 +19,12 @@
                 </properties>
                 <command>journalctl --no-hostname --boot --follow --unit "ppp@$4".service</command>
               </leafNode>
+              <leafNode name="json">
+                <properties>
+                  <help>Show JSON structured detailed information of the specified SSTP client interface</help>
+                </properties>
+                <command>${vyos_op_scripts_dir}/interfaces.py show --intf-name="$4" --intf-type=sstpc --raw</command>
+              </leafNode>
               <leafNode name="statistics">
                 <properties>
                   <help>Show specified SSTP client interface statistics</help>
@@ -37,11 +43,25 @@
             </properties>
             <command>${vyos_op_scripts_dir}/interfaces.py show_summary --intf-type=sstpc</command>
             <children>
-              <leafNode name="detail">
+              <node name="detail">
                 <properties>
                   <help>Show detailed SSTP client interface information</help>
                 </properties>
                 <command>${vyos_op_scripts_dir}/interfaces.py show --intf-type=sstpc</command>
+                <children>
+                  <leafNode name="json">
+                    <properties>
+                      <help>Show JSON structured detailed information of all SSTP client interfaces</help>
+                    </properties>
+                    <command>${vyos_op_scripts_dir}/interfaces.py show --intf-type=sstpc --raw</command>
+                  </leafNode>
+                </children>
+              </node>
+              <leafNode name="json">
+                <properties>
+                  <help>Show JSON structured information of all SSTP client interfaces</help>
+                </properties>
+                <command>${vyos_op_scripts_dir}/interfaces.py show_summary --intf-type=sstpc --raw</command>
               </leafNode>
             </children>
           </node>

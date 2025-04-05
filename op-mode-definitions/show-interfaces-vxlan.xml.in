@@ -13,11 +13,25 @@
             </properties>
             <command>${vyos_op_scripts_dir}/interfaces.py show --intf-name="$4" --intf-type=vxlan</command>
             <children>
-              <leafNode name="brief">
+              <node name="brief">
                 <properties>
                   <help>Show summary of the specified VXLAN interface information</help>
                 </properties>
                 <command>${vyos_op_scripts_dir}/interfaces.py show_summary --intf-name="$4" --intf-type=vxlan</command>
+                <children>
+                  <leafNode name="json">
+                    <properties>
+                      <help>Show JSON structured summary of the specified VXLAN interface information</help>
+                    </properties>
+                    <command>${vyos_op_scripts_dir}/interfaces.py show_summary --intf-name="$4" --intf-type=vxlan --raw</command>
+                  </leafNode>
+                </children>
+              </node>
+              <leafNode name="json">
+                <properties>
+                  <help>Show JSON structured summary of the specified VXLAN interface information</help>
+                </properties>
+                <command>${vyos_op_scripts_dir}/interfaces.py show --intf-name="$4" --intf-type=vxlan --raw</command>
               </leafNode>
               #include <include/show-interface-type-event-log.xml.i>
             </children>
@@ -28,11 +42,25 @@
             </properties>
             <command>${vyos_op_scripts_dir}/interfaces.py show_summary --intf-type=vxlan</command>
             <children>
-              <leafNode name="detail">
+              <node name="detail">
                 <properties>
                   <help>Show detailed VXLAN interface information</help>
                 </properties>
                 <command>${vyos_op_scripts_dir}/interfaces.py show --intf-type=vxlan</command>
+                <children>
+                  <leafNode name="json">
+                    <properties>
+                      <help>Show JSON structured detailed information of all VXLAN interfaces</help>
+                    </properties>
+                    <command>${vyos_op_scripts_dir}/interfaces.py show --intf-type=vxlan --raw</command>
+                  </leafNode>
+                </children>
+              </node>
+              <leafNode name="json">
+                <properties>
+                  <help>Show JSON structured summary of all VXLAN interfaces</help>
+                </properties>
+                <command>${vyos_op_scripts_dir}/interfaces.py show_summary --intf-type=vxlan --raw</command>
               </leafNode>
             </children>
           </node>

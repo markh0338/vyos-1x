@@ -13,17 +13,31 @@
             </properties>
             <command>${vyos_op_scripts_dir}/interfaces.py show --intf-name="$4" --intf-type=ethernet</command>
             <children>
-              <leafNode name="brief">
+              <node name="brief">
                 <properties>
                   <help>Show summary of the specified ethernet interface information</help>
                 </properties>
                 <command>${vyos_op_scripts_dir}/interfaces.py show_summary --intf-name="$4" --intf-type=ethernet</command>
-              </leafNode>
+                <children>
+                  <leafNode name="json">
+                    <properties>
+                      <help>Show JSON structured summary information of the specified ethernet interface</help>
+                    </properties>
+                    <command>${vyos_op_scripts_dir}/interfaces.py show_summary --intf-name="$4" --intf-type=ethernet --raw</command>
+                  </leafNode>
+                </children>
+              </node>
               <leafNode name="identify">
                 <properties>
                   <help>Visually identify specified ethernet interface</help>
                 </properties>
                 <command>echo "Blinking interface $4 for 30 seconds."; ethtool --identify "$4" 30</command>
+              </leafNode>
+              <leafNode name="json">
+                <properties>
+                  <help>Show JSON structure information of specified ethernet interface</help>
+                </properties>
+                <command>${vyos_op_scripts_dir}/interfaces.py show --intf-name="$4" --intf-type=ethernet --raw</command>
               </leafNode>
               <node name="physical">
                 <properties>
@@ -60,11 +74,25 @@
                 </properties>
                 <command>${vyos_op_scripts_dir}/interfaces.py show --intf-name="$4.$6" --intf-type=ethernet</command>
                 <children>
-                  <leafNode name="brief">
+                  <node name="brief">
                     <properties>
                       <help>Show summary of specified virtual network interface (vif) information</help>
                     </properties>
                     <command>${vyos_op_scripts_dir}/interfaces.py show_summary --intf-name="$4.$6" --intf-type=ethernet</command>
+                    <children>
+                      <leafNode name="json">
+                        <properties>
+                          <help>Show JSON structured summary information of specified virtual network interface (vif)</help>
+                        </properties>
+                        <command>${vyos_op_scripts_dir}/interfaces.py show_summary --intf-name="$4.$6" --intf-type=ethernet --raw</command>
+                      </leafNode>
+                    </children>
+                  </node>
+                  <leafNode name="json">
+                    <properties>
+                      <help>Show JSON structure information of specified ethernet interface</help>
+                    </properties>
+                    <command>${vyos_op_scripts_dir}/interfaces.py show_summary --intf-name="$4.$6" --intf-type=ethernet --raw</command>
                   </leafNode>
                 </children>
               </tagNode>
@@ -77,11 +105,25 @@
             </properties>
             <command>${vyos_op_scripts_dir}/interfaces.py show_summary --intf-type=ethernet</command>
             <children>
-              <leafNode name="detail">
+              <node name="detail">
                 <properties>
                   <help>Show detailed ethernet interface information</help>
                 </properties>
                 <command>${vyos_op_scripts_dir}/interfaces.py show --intf-type=ethernet</command>
+                <children>
+                  <leafNode name="json">
+                    <properties>
+                      <help>Show JSON structured detail information of all ethernet interfaces</help>
+                    </properties>
+                    <command>${vyos_op_scripts_dir}/interfaces.py show --intf-type=ethernet --raw</command>
+                  </leafNode>
+                </children>
+              </node>
+              <leafNode name="json">
+                <properties>
+                  <help>Show JSON structured information of all ethernet interfaces</help>
+                </properties>
+                <command>${vyos_op_scripts_dir}/interfaces.py show_summary --intf-type=ethernet --raw</command>
               </leafNode>
             </children>
           </node>

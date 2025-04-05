@@ -13,6 +13,12 @@
             </properties>
             <command>${vyos_op_scripts_dir}/interfaces.py show --intf-name="$4" --intf-type=pppoe</command>
             <children>
+              <leafNode name="json">
+                <properties>
+                  <help>Show JSON structured detailed information of the specified PPPoE interface</help>
+                </properties>
+                <command>${vyos_op_scripts_dir}/interfaces.py show --intf-name="$4" --intf-type=pppoe --raw</command>
+              </leafNode>
               <leafNode name="log">
                 <properties>
                   <help>Show specified PPPoE interface log</help>
@@ -37,11 +43,25 @@
             </properties>
             <command>${vyos_op_scripts_dir}/interfaces.py show_summary --intf-type=pppoe</command>
             <children>
-              <leafNode name="detail">
+              <node name="detail">
                 <properties>
                   <help>Show detailed PPPoE interface information</help>
                 </properties>
                 <command>${vyos_op_scripts_dir}/interfaces.py show --intf-type=pppoe</command>
+                <children>
+                  <leafNode name="json">
+                    <properties>
+                      <help>Show JSON structured detailed information of all PPPoE interfaces</help>
+                    </properties>
+                    <command>${vyos_op_scripts_dir}/interfaces.py show --intf-type=pppoe --raw</command>
+                  </leafNode>
+                </children>
+              </node>
+              <leafNode name="json">
+                <properties>
+                  <help>Show JSON structured detailed information of all PPPoE interfaces</help>
+                </properties>
+                <command>${vyos_op_scripts_dir}/interfaces.py show_summary --intf-type=pppoe --raw</command>
               </leafNode>
             </children>
           </node>

@@ -10,11 +10,25 @@
             </properties>
             <command>${vyos_op_scripts_dir}/interfaces.py show_summary --intf-type=wireless</command>
             <children>
-              <leafNode name="detail">
+              <node name="detail">
                 <properties>
                   <help>Show detailed wireless interface information</help>
                 </properties>
                 <command>${vyos_op_scripts_dir}/interfaces.py show --intf-type=wireless</command>
+                <children>
+                  <leafNode name="json">
+                    <properties>
+                      <help>Show JSON structured detailed information of all wireless interfaces</help>
+                    </properties>
+                    <command>${vyos_op_scripts_dir}/interfaces.py show --intf-type=wireless --raw</command>
+                  </leafNode>
+                </children>
+              </node>
+              <leafNode name="json">
+                <properties>
+                  <help>Show JSON structured summary of all wireless interfaces</help>
+                </properties>
+                <command>${vyos_op_scripts_dir}/interfaces.py show_summary --intf-type=wireless --raw</command>
               </leafNode>
               <leafNode name="info">
                 <properties>
@@ -33,11 +47,25 @@
             </properties>
             <command>${vyos_op_scripts_dir}/interfaces.py show --intf-name="$4" --intf-type=wireless</command>
             <children>
-              <leafNode name="brief">
+              <node name="brief">
                 <properties>
                   <help>Show brief summary of the specified wireless interface</help>
                 </properties>
                 <command>${vyos_op_scripts_dir}/interfaces.py show_summary --intf-name="$4" --intf-type=wireless</command>
+                <children>
+                  <leafNode name="json">
+                    <properties>
+                      <help>Show JSON structured summary of the specified wireless interface</help>
+                    </properties>
+                    <command>${vyos_op_scripts_dir}/interfaces.py show_summary --intf-name="$4" --intf-type=wireless --raw</command>
+                  </leafNode>
+                </children>
+              </node>
+              <leafNode name="json">
+                <properties>
+                  <help>Show JSON structured summary of the specified wireless interface</help>
+                </properties>
+                <command>${vyos_op_scripts_dir}/interfaces.py show --intf-name="$4" --intf-type=wireless --raw</command>
               </leafNode>
               <node name="scan">
                 <properties>
@@ -65,11 +93,25 @@
                 </properties>
                 <command>${vyos_op_scripts_dir}/interfaces.py show --intf-name="$4.$6" --intf-type=wireless</command>
                 <children>
-                  <leafNode name="brief">
+                  <node name="brief">
                     <properties>
                       <help>Show summary of specified virtual network interface (vif) information</help>
                     </properties>
                     <command>${vyos_op_scripts_dir}/interfaces.py show_summary --intf-name="$4.$6" --intf-type=wireless</command>
+                    <children>
+                      <leafNode name="json">
+                        <properties>
+                          <help>Show JSON structured summary of the specified virtual network interface (vif) information</help>
+                        </properties>
+                        <command>${vyos_op_scripts_dir}/interfaces.py show_summary --intf-name="$4.$6" --intf-type=wireless --raw</command>
+                      </leafNode>
+                    </children>
+                  </node>
+                  <leafNode name="json">
+                    <properties>
+                      <help>Show JSON structured summary of the specified wireless (vif) interface</help>
+                    </properties>
+                    <command>${vyos_op_scripts_dir}/interfaces.py show --intf-name="$4.$6" --intf-type=wireless --raw</command>
                   </leafNode>
                 </children>
               </tagNode>
