@@ -14,6 +14,7 @@
             <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
             <children>
               #include <include/ospf/common.xml.i>
+              #include <include/frr-json.xml.i>
               <tagNode name="vrf">
                 <properties>
                   <help>Show OSPF routing protocol for given VRF</help>
@@ -25,6 +26,7 @@
                 <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
                 <children>
                   #include <include/ospf/common.xml.i>
+                  #include <include/frr-json.xml.i>
                 </children>
               </tagNode>
             </children>
