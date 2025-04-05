@@ -10,6 +10,7 @@
   </properties>
   <children>
     #include <include/bgp/prefix-bestpath-multipath.xml.i>
+    #include <include/frr-json.xml.i>
   </children>
   <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
 </tagNode>
@@ -22,6 +23,7 @@
     #include <include/bgp/afi-ipv4-ipv6-common.xml.i>
     #include <include/bgp/afi-ipv4-ipv6-flowspec.xml.i>
     #include <include/bgp/afi-ipv4-ipv6-vpn.xml.i>
+    #include <include/frr-json.xml.i>
   </children>
   <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
 </node>
@@ -34,6 +36,7 @@
   </properties>
   <children>
     #include <include/bgp/prefix-bestpath-multipath.xml.i>
+    #include <include/frr-json.xml.i>
   </children>
   <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
 </tagNode>
@@ -45,6 +48,7 @@
     #include <include/bgp/afi-common.xml.i>
     #include <include/bgp/afi-ipv4-ipv6-common.xml.i>
     #include <include/bgp/afi-ipv4-ipv6-vpn.xml.i>
+    #include <include/frr-json.xml.i>
   </children>
   <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
 </node>
@@ -61,6 +65,9 @@
         </completionHelp>
       </properties>
       <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <children>
+        #include <include/frr-json.xml.i>
+      </children>
     </tagNode>
     <node name="evpn">
       <properties>
@@ -74,12 +81,15 @@
             <help>Display information about all EVPN NLRIs</help>
           </properties>
           <children>
-            <leafNode name="overlay">
+            <node name="overlay">
               <properties>
                 <help>Display BGP Overlay Information for prefixes</help>
               </properties>
               <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
-            </leafNode>
+              <children>
+                #include <include/frr-json.xml.i>
+              </children>
+            </node>
             <leafNode name="tags">
               <properties>
                 <help>Display BGP tags for prefixes</help>
@@ -94,6 +104,7 @@
           </properties>
           <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
           <children>
+            #include <include/frr-json.xml.i>
             #include <include/vtysh-generic-detail.xml.i>
           </children>
         </node>
@@ -103,22 +114,30 @@
           </properties>
           <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
           <children>
+            #include <include/frr-json.xml.i>
             #include <include/vtysh-generic-detail.xml.i>
             #include <include/vni-tagnode.xml.i>
           </children>
         </node>
-        <leafNode name="es-vrf">
+        <node name="es-vrf">
           <properties>
             <help>Ethernet Segment per VRF</help>
           </properties>
           <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
-        </leafNode>
-        <leafNode name="import-rt">
+          <children>
+            #include <include/frr-json.xml.i>
+          </children>
+        </node>
+        <node name="import-rt">
           <properties>
             <help>Show import route target</help>
           </properties>
           <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
-        </leafNode>
+          <children>
+            #include <include/frr-json.xml.i>
+          </children>
+        </node>
+        #include <include/frr-json.xml.i>
         <tagNode name="neighbors">
           <properties>
             <help>Show detailed BGP neighbor information</help>
@@ -128,26 +147,35 @@
           </properties>
           <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
           <children>
-            <leafNode name="advertised-routes">
+            <node name="advertised-routes">
               <properties>
                 <help>Show routes advertised to a BGP neighbor</help>
               </properties>
               <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
-            </leafNode>
-            <leafNode name="routes">
+              <children>
+                #include <include/frr-json.xml.i>
+              </children>
+            </node>
+            <node name="routes">
               <properties>
                 <help>Show routes learned from BGP neighbor</help>
               </properties>
               <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
-            </leafNode>
+              <children>
+                #include <include/frr-json.xml.i>
+              </children>
+            </node>
           </children>
         </tagNode>
-        <leafNode name="next-hops">
+        <node name="next-hops">
           <properties>
             <help>EVPN Nexthops</help>
           </properties>
           <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
-        </leafNode>
+          <children>
+            #include <include/frr-json.xml.i>
+          </children>
+        </node>
         <tagNode name="rd">
           <properties>
             <help>Display information for a route distinguisher</help>
@@ -157,6 +185,7 @@
           </properties>
           <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
           <children>
+            #include <include/frr-json.xml.i>
             <leafNode name="overlay">
               <properties>
                 <help>Display BGP Overlay Information for prefixes</help>
@@ -177,6 +206,7 @@
           </properties>
           <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
           <children>
+            #include <include/frr-json.xml.i>
             #include <include/vtysh-generic-detail.xml.i>
             <node name="type">
               <properties>

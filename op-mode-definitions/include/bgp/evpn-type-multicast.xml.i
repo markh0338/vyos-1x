@@ -1,8 +1,11 @@
 <!-- included start from bgp/evpn-type-multicast.xml.i -->
-<leafNode name="multicast">
+<node name="multicast">
   <properties>
     <help>Multicast (Type-3) route</help>
   </properties>
   <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
-</leafNode>
+  <children>
+    #include <include/frr-json.xml.i>
+  </children>
+</node>
 <!-- included end -->

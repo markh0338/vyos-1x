@@ -8,6 +8,7 @@
   </properties>
   <children>
     #include <include/bgp/exact-match.xml.i>
+    #include <include/frr-json.xml.i>
   </children>
   <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
 </tagNode>
@@ -21,6 +22,7 @@
   <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
   <children>
     #include <include/bgp/exact-match.xml.i>
+    #include <include/frr-json.xml.i>
   </children>
 </tagNode>
 <tagNode name="large-community-list">
@@ -33,32 +35,43 @@
   <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
   <children>
     #include <include/bgp/exact-match.xml.i>
+    #include <include/frr-json.xml.i>
   </children>
 </tagNode>
-<leafNode name="statistics">
+<node name="statistics">
   <properties>
     <help>RIB advertisement statistics</help>
   </properties>
   <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
-</leafNode>
+  <children>
+    #include <include/frr-json.xml.i>
+  </children>
+</node>
 <node name="summary">
   <properties>
     <help>Summary of BGP neighbor status</help>
   </properties>
   <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
   <children>
-    <leafNode name="established">
+    <node name="established">
       <properties>
         <help>Show only sessions in Established state</help>
       </properties>
       <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
-    </leafNode>
-    <leafNode name="failed">
+      <children>
+        #include <include/frr-json.xml.i>
+      </children>
+    </node>
+    <node name="failed">
       <properties>
         <help>Show only sessions not in Established state</help>
       </properties>
       <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
-    </leafNode>
+      <children>
+        #include <include/frr-json.xml.i>
+      </children>
+    </node>
+    #include <include/frr-json.xml.i>
   </children>
 </node>
 <!-- included end -->

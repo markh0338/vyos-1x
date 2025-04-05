@@ -11,6 +11,7 @@
             <command>vtysh -c "show ip bgp"</command>
             <children>
               #include <include/bgp/show-ip-bgp-common.xml.i>
+              #include <include/frr-json.xml.i>
               <leafNode name="vrf">
                 <properties>
                   <help>Show BGP VRF information</help>
@@ -28,6 +29,7 @@
                 <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
                 <children>
                   #include <include/bgp/show-ip-bgp-common.xml.i>
+                  #include <include/frr-json.xml.i>
                 </children>
               </tagNode>
             </children>
