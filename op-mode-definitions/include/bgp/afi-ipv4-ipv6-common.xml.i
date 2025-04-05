@@ -101,6 +101,7 @@
   </properties>
   <children>
     #include <include/bgp/exact-match.xml.i>
+    #include <include/frr-json.xml.i>
   </children>
   <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
 </tagNode>
@@ -109,24 +110,33 @@
     <help>Display detailed information about dampening</help>
   </properties>
   <children>
-    <leafNode name="dampened-paths">
+    <node name="dampened-paths">
       <properties>
         <help>Display paths suppressed due to dampening</help>
       </properties>
       <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
-    </leafNode>
-    <leafNode name="flap-statistics">
+      <children>
+        #include <include/frr-json.xml.i>
+      </children>
+    </node>
+    <node name="flap-statistics">
       <properties>
         <help>Display flap statistics of routes</help>
       </properties>
       <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
-    </leafNode>
-    <leafNode name="parameters">
+      <children>
+        #include <include/frr-json.xml.i>
+      </children>
+    </node>
+    <node name="parameters">
       <properties>
         <help>Display detail of configured dampening parameters</help>
       </properties>
       <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
-    </leafNode>
+      <children>
+        #include <include/frr-json.xml.i>
+      </children>
+    </node>
   </children>
 </node>
 <tagNode name="filter-list">
@@ -136,6 +146,7 @@
       <script>vtysh -c 'show bgp as-path-access-list' | grep 'AS path access list' | awk '{print $NF}'</script>
     </completionHelp>
   </properties>
+  <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
 </tagNode>
 <node name="large-community">
   <properties>
@@ -143,12 +154,15 @@
   </properties>
   <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
 </node>
-<leafNode name="neighbors">
+<node name="neighbors">
   <properties>
     <help>Detailed information on TCP and BGP neighbor connections</help>
   </properties>
   <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
-</leafNode>
+  <children>
+    #include <include/frr-json.xml.i>
+  </children>
+</node>
 <tagNode name="neighbors">
   <properties>
     <help>Show BGP information for specified neighbor</help>
@@ -158,61 +172,85 @@
   </properties>
   <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
   <children>
-    <leafNode name="advertised-routes">
+    <node name="advertised-routes">
       <properties>
         <help>Show routes advertised to a BGP neighbor</help>
       </properties>
       <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
-    </leafNode>
-    <leafNode name="dampened-routes">
+      <children>
+        #include <include/frr-json.xml.i>
+      </children>
+    </node>
+    <node name="dampened-routes">
       <properties>
         <help>Show dampened routes received from BGP neighbor</help>
       </properties>
       <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
-    </leafNode>
-    <leafNode name="flap-statistics">
+      <children>
+        #include <include/frr-json.xml.i>
+      </children>
+    </node>
+    <node name="flap-statistics">
       <properties>
         <help>Show flap statistics of the routes learned from BGP neighbor</help>
       </properties>
       <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
-    </leafNode>
-    <leafNode name="prefix-counts">
+      <children>
+        #include <include/frr-json.xml.i>
+      </children>
+    </node>
+    <node name="prefix-counts">
       <properties>
         <help>Show detailed prefix count information for BGP neighbor</help>
       </properties>
       <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
-    </leafNode>
+      <children>
+        #include <include/frr-json.xml.i>
+      </children>
+    </node>
     <node name="received">
       <properties>
         <help>Show information received from BGP neighbor</help>
       </properties>
       <children>
-        <leafNode name="prefix-filter">
+        <node name="prefix-filter">
           <properties>
             <help>Show prefixlist filter</help>
           </properties>
           <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
-        </leafNode>
+          <children>
+            #include <include/frr-json.xml.i>
+          </children>
+        </node>
       </children>
     </node>
-    <leafNode name="filtered-routes">
+    <node name="filtered-routes">
       <properties>
         <help>Show filtered routes from BGP neighbor</help>
       </properties>
       <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
-    </leafNode>
-    <leafNode name="received-routes">
+      <children>
+        #include <include/frr-json.xml.i>
+      </children>
+    </node>
+    <node name="received-routes">
       <properties>
         <help>Show received routes from BGP neighbor</help>
       </properties>
       <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
-    </leafNode>
-    <leafNode name="routes">
+      <children>
+        #include <include/frr-json.xml.i>
+      </children>
+    </node>
+    <node name="routes">
       <properties>
         <help>Show routes learned from BGP neighbor</help>
       </properties>
       <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
-    </leafNode>
+      <children>
+        #include <include/frr-json.xml.i>
+      </children>
+    </node>
   </children>
 </tagNode>
 <tagNode name="prefix-list">
@@ -220,12 +258,18 @@
     <help>Display routes conforming to the prefix-list</help>
   </properties>
   <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+  <children>
+    #include <include/frr-json.xml.i>
+  </children>
 </tagNode>
 <tagNode name="regexp">
   <properties>
     <help>Display routes matching the AS path regular expression</help>
   </properties>
   <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+  <children>
+    #include <include/frr-json.xml.i>
+  </children>
 </tagNode>
 <tagNode name="route-map">
   <properties>
@@ -235,6 +279,9 @@
     </completionHelp>
   </properties>
   <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+  <children>
+    #include <include/frr-json.xml.i>
+  </children>
 </tagNode>
 #include <include/vtysh-generic-wide.xml.i>
 <!-- included end -->

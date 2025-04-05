@@ -8,6 +8,7 @@
   </properties>
   <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
   <children>
+    #include <include/frr-json.xml.i>
     <tagNode name="">
       <properties>
         <help>Show IP routes of specified prefix</help>
@@ -16,6 +17,9 @@
         </completionHelp>
       </properties>
       <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <children>
+        #include <include/frr-json.xml.i>
+      </children>
     </tagNode>
   </children>
 </tagNode>

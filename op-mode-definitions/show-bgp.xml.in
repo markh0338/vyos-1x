@@ -14,10 +14,12 @@
             </properties>
             <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
             <children>
+              #include <include/frr-json.xml.i>
               #include <include/vtysh-generic-wide.xml.i>
             </children>
           </node>
           #include <include/bgp/show-bgp-common.xml.i>
+          #include <include/frr-json.xml.i>
           <node name="mac">
             <properties>
               <help>MAC address</help>
@@ -39,18 +41,24 @@
             <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
           </leafNode>
           #include <include/bgp/next-hop.xml.i>
-          <leafNode name="statistics">
+          <node name="statistics">
             <properties>
               <help>BGP RIB advertisement statistics</help>
             </properties>
             <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
-          </leafNode>
-          <leafNode name="statistics-all">
+            <children>
+              #include <include/frr-json.xml.i>
+            </children>
+          </node>
+          <node name="statistics-all">
             <properties>
               <help>Display number of prefixes for all afi/safi</help>
             </properties>
             <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
-          </leafNode>
+            <children>
+              #include <include/frr-json.xml.i>
+            </children>
+          </node>
           #include <include/vni-tagnode-all.xml.i>
           <tagNode name="vni">
             <children>
@@ -97,6 +105,7 @@
               #include <include/bgp/show-bgp-common.xml.i>
               #include <include/bgp/martian-next-hop.xml.i>
               #include <include/bgp/next-hop.xml.i>
+              #include <include/frr-json.xml.i>
             </children>
           </tagNode>
           #include <include/vtysh-generic-wide.xml.i>
