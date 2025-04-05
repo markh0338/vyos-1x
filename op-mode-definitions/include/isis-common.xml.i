@@ -5,6 +5,7 @@
   </properties>
   <children>
     #include <include/vtysh-generic-detail.xml.i>
+    #include <include/frr-json.xml.i>
   </children>
   <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
 </node>
@@ -16,6 +17,9 @@
     </completionHelp>
   </properties>
   <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+  <children>
+    #include <include/frr-json.xml.i>
+  </children>
 </tagNode>
 <node name="fast-reroute">
   <properties>
@@ -59,6 +63,7 @@
   </properties>
   <children>
     #include <include/vtysh-generic-detail.xml.i>
+    #include <include/frr-json.xml.i>
   </children>
   <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
 </node>
@@ -97,6 +102,7 @@
   </properties>
   <children>
     #include <include/vtysh-generic-detail.xml.i>
+    #include <include/frr-json.xml.i>
   </children>
   <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
 </node>
@@ -108,30 +114,43 @@
     </completionHelp>
   </properties>
   <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+  <children>
+    #include <include/frr-json.xml.i>
+  </children>
 </tagNode>
 <node name="route">
   <properties>
     <help>Show IS-IS routing table</help>
   </properties>
   <children>
-    <leafNode name="level-1">
+    #include <include/frr-json.xml.i>
+    <node name="level-1">
       <properties>
         <help>Show level-1 routes</help>
       </properties>
       <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
-    </leafNode>
-    <leafNode name="level-2">
+      <children>
+        #include <include/frr-json.xml.i>
+      </children>
+    </node>
+    <node name="level-2">
       <properties>
         <help>Show level-2 routes</help>
       </properties>
       <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
-    </leafNode>
-    <leafNode name="prefix-sid">
-     <properties>
-       <help>Show Prefix-SID information</help>
-     </properties>
-     <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
-   </leafNode>
+      <children>
+        #include <include/frr-json.xml.i>
+      </children>
+    </node>
+    <node name="prefix-sid">
+      <properties>
+        <help>Show Prefix-SID information</help>
+      </properties>
+      <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
+      <children>
+        #include <include/frr-json.xml.i>
+      </children>
+    </node>
   </children>
   <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
 </node>
@@ -154,29 +173,39 @@
   </properties>
   <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
 </leafNode>
-<leafNode name="summary">
+<node name="summary">
   <properties>
     <help>Show IS-IS information summary</help>
   </properties>
   <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
-</leafNode>
+  <children>
+    #include <include/frr-json.xml.i>
+  </children>
+</node>
 <node name="topology">
   <properties>
     <help>Show IS-IS paths to Intermediate Systems</help>
   </properties>
   <children>
-    <leafNode name="level-1">
+    #include <include/frr-json.xml.i>
+    <node name="level-1">
       <properties>
         <help>Show level-1 routes</help>
       </properties>
+      <children>
+        #include <include/frr-json.xml.i>
+      </children>
       <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
-    </leafNode>
-    <leafNode name="level-2">
+    </node>
+    <node name="level-2">
       <properties>
         <help>Show level-2 routes</help>
       </properties>
+      <children>
+        #include <include/frr-json.xml.i>
+      </children>
       <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
-    </leafNode>
+    </node>
   </children>
   <command>${vyos_op_scripts_dir}/vtysh_wrapper.sh $@</command>
 </node>
